@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `App title`,
+    description: `App sample`,
+    keywords: `sample, something, gatsby`,
   },
   plugins: [
     {

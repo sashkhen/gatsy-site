@@ -9,16 +9,16 @@ import Content from './Content'
 
 import './index.css'
 
-const TemplateWrapper = ({ children }) => (
+const TemplateWrapper = ({ children, data }) => (
   <div>
     <Helmet
-      title="Gatsby Default Starter"
+      title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: data.site.siteMetadata.description },
+        { name: 'keywords', content: data.site.siteMetadata.keywords },
       ]}
     />
-    <Header />
+    <Header appTitle={data.site.siteMetadata.title} />
     <Content>{children()}</Content>
   </div>
 )
@@ -26,5 +26,17 @@ const TemplateWrapper = ({ children }) => (
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
 }
+
+export const query = graphql`
+  query AppQuery {
+    site {
+      siteMetadata {
+        title,
+        description,
+        keywords,
+      }
+    }
+  }
+`
 
 export default TemplateWrapper

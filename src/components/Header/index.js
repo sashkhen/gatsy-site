@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
 import Navigation from '../Navigation'
@@ -8,11 +9,15 @@ import AppTitle from './AppTitle'
 
 import navLinks from './navLinks'
 
-const Header = () => (
+const Header = ({ appTitle }) => (
   <Wrapper>
-    <AppTitle />
+    <AppTitle {...{ appTitle }} />
     <Navigation links={navLinks} />
   </Wrapper>
 )
+
+Header.propTypes = {
+  appTitle: PropTypes.string,
+}
 
 export default Header
