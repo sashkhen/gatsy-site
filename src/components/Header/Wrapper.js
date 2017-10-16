@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { COLOR } from '../../constants/style';
 
 const Wrapper = styled.header`
+  flex: 0 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -5,12 +5,13 @@ import Helmet from 'react-helmet'
 
 import Header from '../components/Header'
 
+import Wrapper from './Wrapper'
 import Content from './Content'
 
 import './index.css'
 
 const TemplateWrapper = ({ children, data }) => (
-  <div>
+  <Wrapper>
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
@@ -20,7 +21,7 @@ const TemplateWrapper = ({ children, data }) => (
     />
     <Header appTitle={data.site.siteMetadata.title} />
     <Content>{children()}</Content>
-  </div>
+  </Wrapper>
 )
 
 TemplateWrapper.propTypes = {
