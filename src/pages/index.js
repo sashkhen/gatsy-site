@@ -1,5 +1,6 @@
-import React from "react"
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
+import Link from 'gatsby-link'
 
 const Heading = styled.h1`
   display: inline-block;
@@ -14,6 +15,21 @@ const DateText = styled.span`
   color: #BBB;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  * {
+    transition: color .3s ease-out;
+  }
+
+  &:hover {
+    * {
+      color: black;
+    }
+  }
+`;
+
 
 export default ({ data }) => {
   console.log(data)
@@ -25,11 +41,13 @@ export default ({ data }) => {
       </h4>
       {data.allMarkdownRemark.edges.map(({ node }) =>
         <div key={node.id}>
-          <ListItem>
-            {node.frontmatter.title}{" "}
-            <DateText>— {node.frontmatter.date}</DateText>
-          </ListItem>
-          <p>{node.excerpt}</p>
+          <StyledLink to={node.fields.slug}>
+            <ListItem>
+              {node.frontmatter.title}{" "}
+              <DateText>— {node.frontmatter.date}</DateText>
+            </ListItem>
+            <p>{node.excerpt}</p>
+          </StyledLink>
         </div>
       )}
     </div>
@@ -51,6 +69,9 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
           }
           excerpt
         }
